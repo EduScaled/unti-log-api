@@ -1,0 +1,12 @@
+DROP DATABASE IF EXISTS unti_log;
+CREATE DATABASE unti_log CHARACTER SET utf8 COLLATE utf8_general_ci;
+GRANT ALL PRIVILEGES ON unti_log.* TO root;
+CREATE TABLE log_data (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  email VARCHAR(100),
+  type VARCHAR(20) NOT NUlL,
+  action VARCHAR(256) NOT NUlL,
+  url VARCHAR(512),
+  created_at TIMESTAMP NOT NULL
+);
