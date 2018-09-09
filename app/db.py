@@ -26,7 +26,9 @@ async def init_db_pool(app):
         'host': config['mysql']['host'], 
         'port': config['mysql']['port'],
         'user': config['mysql']['user'], 
-        'password': config['mysql']['password']             
+        'password': config['mysql']['password'],
+        'minsize': config['mysql']['minsize'],
+        'maxsize': config['mysql']['maxsize']             
     }
     app['db'] = await create_pool(**kwargs)
 

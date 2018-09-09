@@ -1,14 +1,11 @@
+import argparse
+import pathlib
 import trafaret as T
 
 from trafaret_config import commandline
 
-class Options():
-
-    def __init__(self, config):
-        self.config = config
-        self.print_config_vars = False
-        self.print_config = False
-        self.check_config = False
+BASE_DIR = pathlib.Path(__file__).parent.parent
+DEFAULT_CONFIG_PATH = BASE_DIR / 'config' / 'dev.yaml'
 
 TRAFARET = T.Dict({
     T.Key('mysql'):
@@ -25,8 +22,15 @@ TRAFARET = T.Dict({
     T.Key('port'): T.Int(),
 })
 
-def get_config():
-    options = Options('config/dev.yaml')
+def get_config(argv=None):
+
+    ap = argparse.ArgumentParser()
+    commandline.standard_argparse_options(
+        ap,
+        default_config=DEFAULT_CONFIG_PATH
+    )
+
+    options, unknown = ap.parse_known_args(argv)
     config = commandline.config_from_options(options, TRAFARET)
 
     return config
