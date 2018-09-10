@@ -31,6 +31,10 @@ def get_config(argv=None):
     )
 
     options, unknown = ap.parse_known_args(argv)
+
+    if argv:
+        options.config = "{}/config/{}.yaml".format(BASE_DIR, options.config)
+
     config = commandline.config_from_options(options, TRAFARET)
 
     return config
