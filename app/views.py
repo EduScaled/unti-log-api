@@ -1,5 +1,5 @@
 from aiohttp import web
-from service import insert_log, get_logs
+from app.service import insert_log, get_logs
 
 routes = web.RouteTableDef()
 

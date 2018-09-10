@@ -1,5 +1,4 @@
-
-from db import insert, all
+from app.db import insert, all
 
 async def fetch_logs(pool, query):
     logs = []
