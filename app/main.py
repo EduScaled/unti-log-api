@@ -22,6 +22,6 @@ def init_app():
 async def async_run():
     return init_app()
 
-def sync_run():
+def sync_run(argv=None):
     app = init_app()
     web.run_app(app, host=app['config']['host'], port=app['config']['port'])
