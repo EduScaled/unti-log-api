@@ -24,7 +24,6 @@ async def create_db(commands, config, loop):
     pool = await aiomysql.create_pool(
         user=config['mysql']['user'], 
         password=config['mysql']['password'], 
-        db=config['mysql']['database'],
         host=config['mysql']['host'], 
         port=config['mysql']['port'], 
         loop=loop
