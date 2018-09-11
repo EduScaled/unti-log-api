@@ -2,7 +2,7 @@ mysql:
   database: unti_log
   user: root
   password: root
-  host: untisql
+  host: unti-mysql
   port: 3306
   minsize: 5
   maxsize: 10
