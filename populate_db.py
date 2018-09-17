@@ -3,22 +3,24 @@ import string
 import random
 import asyncio
 import aiomysql
+import datetime
 
 from app.utils import BASE_DIR, get_config
 
 AMOUNT = 10000
-
 LEVELS = ['trace', 'debug', 'info', 'warn', 'error', 'critical']
+NOW = datetime.datetime.now()
 
 async def create_rows():
     rows = []
     for _ in range(AMOUNT):
-        rows.append("INSERT INTO log_data VALUES (NULL, {}, \"{}\", \"{}\", \"{}\", \"{}\", NOW());".format(
+        rows.append("INSERT INTO log_data VALUES (NULL, {}, \"{}\", \"{}\", \"{}\", \"{}\", \"{}\");".format(
             random.randint(1, AMOUNT), 
             ''.join(random.choices(string.ascii_uppercase + string.digits, k=20)),
             LEVELS[random.randint(0, len(LEVELS)-1)], 
             ''.join(random.choices(string.ascii_uppercase + string.digits, k=50)),
             ''.join(random.choices(string.ascii_uppercase + string.digits, k=50)),
+            '-'.join([str(NOW.year), str(NOW.month), str(random.randint(1, 30))])
         ))
     return rows
 
